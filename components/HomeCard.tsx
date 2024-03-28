@@ -80,7 +80,7 @@ const HomeCard: React.FC<HomecardProps> = ({
                 <Bath className=" w-4 h-4" />
                 {baths}
               </span>
-              {baths === 1 ? "bedroom" : "bedrooms"}
+              {baths === 1 ? "bathroom" : "bathrooms"}
             </p>
             <p>
               <span className="font-medium">{sqft.toLocaleString()}</span> sqft

@@ -41,6 +41,8 @@ const Dashboard = () => {
     getPropertiesByCompany.data?.getPropertiesByCompany;
   const numberOfSingleProperties = propertiesByCompany?.length;
 
+  const projects = 0;
+
   const stats = [
     {
       name: "Single properties",
@@ -198,7 +200,7 @@ const Dashboard = () => {
               <p className=" text-[22px] pl-1 font-medium leading-7 text-primary-blue">
                 Recent Projects
               </p>
-              {propertiesByCompany?.length! > 0 ? (
+              {projects == 0 ? (
                 <div className="flex py-20 items-center justify-center text-primary-blue rounded-lg bg-white mt-4 border border-gray-900/10">
                   <div className="flex flex-col items-center gap-y-3 text-center">
                     <span className=" bg-gray-50 p-6 rounded-full">
