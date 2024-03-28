@@ -16,6 +16,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import {
+  GetPropertiesByCompanyDocument,
   useCreatePropertyMutation,
   useGetCitiesByStateIdQuery,
   useGetDeveloperCompanyByUserQuery,
@@ -521,6 +522,7 @@ const CreateSingleproperty = () => {
           propertyMedia: propertyMedia,
           ...data,
         },
+        refetchQueries: [GetPropertiesByCompanyDocument],
       });
       showSuccessToast();
       router.push("/dashboard/singleproperties");

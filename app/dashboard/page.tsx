@@ -14,6 +14,9 @@ import {
 import { Building, Check } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { BsHouseDash } from "react-icons/bs";
+import { BsHouses } from "react-icons/bs";
+import { BsBuildingDash } from "react-icons/bs";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -47,13 +50,13 @@ const Dashboard = () => {
     },
     {
       name: "Projects",
-      value: "2",
+      value: "0",
       change: "-1.39%",
       changeType: "positive",
     },
     {
       name: "Foreclosures",
-      value: "1",
+      value: "0",
       change: "+10.18%",
       changeType: "negative",
     },
@@ -69,7 +72,7 @@ const Dashboard = () => {
       {queriesLoading ? (
         <Loader2 />
       ) : (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 pb-8">
           <div className="px-4 sm:px-6 lg:mx-auto lg:max-w-6xl lg:px-8 pt-3 py-2">
             <div className="py-6 md:flex md:items-center md:justify-between px-1">
               <div className="min-w-0 flex-1">
@@ -163,20 +166,65 @@ const Dashboard = () => {
               <p className=" text-[22px] pl-1 font-medium leading-7 text-primary-blue">
                 Recent Single listings
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-primary-blue lg:grid-cols-3 overflow-auto gap-x-5 gap-y-1 justify-between w-full mt-4">
-                {propertiesByCompany?.map((property) => (
-                  <div key={property?.id} className="w-full">
-                    <HomeCard
-                      beds={property?.propertyDetail?.bedrooms!}
-                      sqft={property?.propertyDetail?.sizeSqft!}
-                      price={property?.price!}
-                      baths={property?.propertyDetail?.bathrooms!}
-                      propertyMedia={property?.propertiesMedia}
-                      address={property?.propertyDetail?.address!}
-                    />
+              {propertiesByCompany?.length! == 0 ? (
+                <div className="flex py-20 items-center justify-center text-primary-blue rounded-lg bg-white mt-4 border border-gray-900/10">
+                  <div className="flex flex-col items-center gap-y-3 text-center">
+                    <span className=" bg-gray-50 p-6 rounded-full">
+                      <BsHouseDash className=" w-8 h-8" />
+                    </span>
+                    <h3 className="text-[22px] tracking-tight">
+                      You have no properties
+                    </h3>
                   </div>
-                ))}
-              </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-primary-blue lg:grid-cols-3 overflow-auto gap-x-5 gap-y-1 justify-between w-full mt-4">
+                  {propertiesByCompany?.map((property) => (
+                    <div key={property?.id} className="w-full">
+                      <HomeCard
+                        beds={property?.propertyDetail?.bedrooms!}
+                        sqft={property?.propertyDetail?.sizeSqft!}
+                        price={property?.price!}
+                        baths={property?.propertyDetail?.bathrooms!}
+                        propertyMedia={property?.propertiesMedia}
+                        address={property?.propertyDetail?.address!}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className=" mt-9">
+              <p className=" text-[22px] pl-1 font-medium leading-7 text-primary-blue">
+                Recent Projects
+              </p>
+              {propertiesByCompany?.length! > 0 ? (
+                <div className="flex py-20 items-center justify-center text-primary-blue rounded-lg bg-white mt-4 border border-gray-900/10">
+                  <div className="flex flex-col items-center gap-y-3 text-center">
+                    <span className=" bg-gray-50 p-6 rounded-full">
+                      <BsBuildingDash className=" w-8 h-8" />
+                    </span>
+                    <h3 className="text-[22px] tracking-tight">
+                      You have no projects
+                    </h3>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-primary-blue lg:grid-cols-3 overflow-auto gap-x-5 gap-y-1 justify-between w-full mt-4">
+                  {propertiesByCompany?.map((property) => (
+                    <div key={property?.id} className="w-full">
+                      <HomeCard
+                        beds={property?.propertyDetail?.bedrooms!}
+                        sqft={property?.propertyDetail?.sizeSqft!}
+                        price={property?.price!}
+                        baths={property?.propertyDetail?.bathrooms!}
+                        propertyMedia={property?.propertiesMedia}
+                        address={property?.propertyDetail?.address!}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
