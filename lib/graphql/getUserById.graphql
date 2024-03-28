@@ -1,0 +1,18 @@
+query GetUserById {
+  getUserById {
+    id
+    fullname
+    email
+    mobile
+    vetted
+    isDeveloper
+    hasCompany
+    role {
+      roleName
+      roleDescription
+      id
+    }
+    roleId
+    createdAt
+  }
+}

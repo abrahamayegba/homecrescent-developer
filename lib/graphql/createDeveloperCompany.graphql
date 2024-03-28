@@ -1,0 +1,24 @@
+mutation CreateDeveloperCompany(
+  $companyName: String!
+  $companyEmail: String!
+  $companyMobile: String!
+  $companyTypeId: Int!
+  $registrationNumber: String
+  $address: String
+) {
+  createDeveloperCompany(
+    input: {
+      companyName: $companyName
+      companyEmail: $companyEmail
+      companyMobile: $companyMobile
+      companyTypeId: $companyTypeId
+      registrationNumber: $registrationNumber
+      address: $address
+    }
+  ) {
+    id
+    companyName
+    companyEmail
+    createdAt
+  }
+}

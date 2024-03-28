@@ -1,0 +1,35 @@
+mutation CreateProperty(
+  $name: String!
+  $description: String!
+  $price: Float!
+  $categoryId: String!
+  $propertyStatusId: Int!
+  $projectId: String
+  $prototypeId: String
+  $cityId: String!
+  $developerCompanyId: String
+  $propertyDetail: CreatePropertyDetails!
+  $propertyMedia: [CreatePropertyMedia]
+) {
+  createProperty(
+    input: {
+      name: $name
+      description: $description
+      price: $price
+      categoryId: $categoryId
+      propertyStatusId: $propertyStatusId
+      projectId: $projectId
+      prototypeId: $prototypeId
+      cityId: $cityId
+      developerCompanyId: $developerCompanyId
+      propertyDetail: $propertyDetail
+      propertyMedia: $propertyMedia
+    }
+  ) {
+    id
+    name
+    description
+    price
+    createdAt
+  }
+}

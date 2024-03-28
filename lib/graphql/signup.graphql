@@ -1,0 +1,30 @@
+mutation SignUp(
+  $email: String!
+  $fullname: String!
+  $mobile: String!
+  $password: String!
+  $isDeveloper: Boolean
+  $hasCompany: Boolean
+) {
+  signUp(
+    input: {
+      email: $email
+      fullname: $fullname
+      mobile: $mobile
+      password: $password
+      isDeveloper: $isDeveloper
+      hasCompany: $hasCompany
+    }
+  ) {
+    token {
+      access_token
+      refresh_token
+    }
+    user {
+      fullname
+      id
+      email
+      mobile
+    }
+  }
+}

@@ -1,0 +1,20 @@
+mutation CreatePrototype(
+  $prototypeName: String!
+  $description: String!
+  $projectId: String!
+  $categoryId: String
+  $mediaUrl: String
+) {
+  createPrototype(
+    input: {
+      prototypeName: $prototypeName
+      description: $description
+      projectId: $projectId
+      categoryId: $categoryId
+      mediaUrl: $mediaUrl
+    }
+  ) {
+    id
+    prototypeName
+  }
+}

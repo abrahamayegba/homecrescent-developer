@@ -1,0 +1,12 @@
+query GetDeveloperCompanyByUser {
+  getDeveloperCompanyByUser {
+    id
+    companyName
+    companyEmail
+    companyType {
+      id
+      type
+    }
+    createdAt
+  }
+}

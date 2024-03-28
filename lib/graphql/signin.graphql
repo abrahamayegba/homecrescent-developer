@@ -1,0 +1,18 @@
+mutation SignIn($email: String!, $password: String!) {
+  signIn(input: { email: $email, password: $password }) {
+    verified
+    vetted
+    hasDeveloperCompany
+    token {
+      access_token
+      refresh_token
+    }
+    user {
+      fullname
+      id
+      email
+      mobile
+      hasCompany
+    }
+  }
+}

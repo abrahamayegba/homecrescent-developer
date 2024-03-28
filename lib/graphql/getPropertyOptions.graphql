@@ -1,0 +1,6 @@
+query GetPropertyOptions {
+  getPropertyOptions {
+    propertyOption
+    id
+  }
+}

@@ -1,0 +1,6 @@
+query GetStates {
+  getStates {
+    stateName
+    id
+  }
+}

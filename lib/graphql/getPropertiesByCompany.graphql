@@ -1,0 +1,26 @@
+query GetPropertiesByCompany($companyId: String!) {
+  getPropertiesByCompany(companyId: $companyId) {
+    id
+    description
+    price
+    propertyStatus {
+      propertyStatus
+    }
+    propertyDetail {
+      longitude
+      floors
+      bedrooms
+      bathrooms
+      sizeSqft
+      floors
+      address
+    }
+    propertiesMedia {
+      id
+      mediaUrl
+      propertyMediaCategory {
+        mediaCategory
+      }
+    }
+  }
+}

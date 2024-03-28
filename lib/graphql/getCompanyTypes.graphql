@@ -1,0 +1,6 @@
+query getCompanyTypes {
+  getCompanyTypes {
+    id
+    type
+  }
+}

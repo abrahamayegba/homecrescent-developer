@@ -1,0 +1,6 @@
+query getPropertyCategory {
+  getPropertyCategories {
+    categoryName
+    id
+  }
+}

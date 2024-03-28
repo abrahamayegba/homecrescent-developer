@@ -1,0 +1,27 @@
+mutation CreateProject(
+  $projectName: String!
+  $description: String!
+  $address: String!
+  $cityId: String!
+  $projectStatusId: Int!
+  $developerCompanyId: String
+  $projectLayoutUrl: String
+  $neighborhoodId: String
+) {
+  createProject(
+    input: {
+      projectName: $projectName
+      description: $description
+      address: $address
+      cityId: $cityId
+      projectStatusId: $projectStatusId
+      developerCompanyId: $developerCompanyId
+      projectLayoutUrl: $projectLayoutUrl
+      neighborhoodId: $neighborhoodId
+    }
+  ) {
+    id
+    projectName
+    address
+  }
+}

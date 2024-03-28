@@ -1,0 +1,8 @@
+query GetPrototypeByProject($projectId: String!) {
+  getPrototypesByProject(projectId: $projectId) {
+    id
+    prototypeName
+    description
+    createdAt
+  }
+}

@@ -1,0 +1,6 @@
+query getPropertyStatuses {
+  getPropertyStatuses {
+    propertyStatus
+    id
+  }
+}
