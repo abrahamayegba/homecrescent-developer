@@ -5,8 +5,8 @@ mutation CreateProject(
   $cityId: String!
   $projectStatusId: Int!
   $developerCompanyId: String
-  $projectLayoutUrl: String
   $neighborhoodId: String
+  $projectMedia: [CreateProjectMedia]
 ) {
   createProject(
     input: {
@@ -16,8 +16,8 @@ mutation CreateProject(
       cityId: $cityId
       projectStatusId: $projectStatusId
       developerCompanyId: $developerCompanyId
-      projectLayoutUrl: $projectLayoutUrl
       neighborhoodId: $neighborhoodId
+      projectMedia: $projectMedia
     }
   ) {
     id

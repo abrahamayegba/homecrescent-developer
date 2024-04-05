@@ -200,7 +200,6 @@ const CreateSingleproperty = () => {
     (property) => property?.mediaCategory === "Bedroom"
   );
   const bedroomMediaCategoryId = bedroomMediaCategory?.id;
-
   const bathroomMediaCategory = propertyMediaCategories?.find(
     (property) => property?.mediaCategory === "Bathroom"
   );
@@ -698,7 +697,7 @@ const CreateSingleproperty = () => {
                       Property description
                     </label>
                     <Textarea
-                      className=" mt-2 text-base text-primary-blue placeholder:font-light placeholder:text-[15px]"
+                      className=" mt-2 py-1 text-base text-primary-blue placeholder:font-light placeholder:text-[15px]"
                       placeholder="e.g This stunning property offers breathtaking ocean views and luxurious amenities..."
                       {...register("description")}
                     />

@@ -1,0 +1,19 @@
+query GetProjectsByCompany($companyId: String!, $cursor: String, $sets: Float) {
+  getProjectsByCompany(companyId: $companyId, cursor: $cursor, sets: $sets) {
+    projectsByCompany {
+      id
+      projectName
+      description
+      address
+      projectsMedia {
+        mediaUrl
+        projectMediaCategoryId
+        projectMediaCategory {
+          mediaCategory
+        }
+      }
+      cityId
+    }
+    cursorId
+  }
+}

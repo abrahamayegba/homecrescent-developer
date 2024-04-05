@@ -1,5 +1,6 @@
 "use client";
 import HomeCard from "@/components/HomeCard";
+import ProjectCard from "@/components/ProjectCard";
 import Loader2 from "@/components/loading/Loader2";
 import {
   DropdownMenu,
@@ -8,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   useGetDeveloperCompanyByUserQuery,
+  useGetProjectsByCompanyQuery,
   useGetPropertiesByCompanyQuery,
   useGetUserByIdQuery,
 } from "@/src/generated/graphql";
@@ -15,7 +17,6 @@ import { Building, Check } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { BsHouseDash } from "react-icons/bs";
-import { BsHouses } from "react-icons/bs";
 import { BsBuildingDash } from "react-icons/bs";
 
 function classNames(...classes: any) {
@@ -37,11 +38,18 @@ const Dashboard = () => {
     },
   });
 
+  const getProjectsByCompany = useGetProjectsByCompanyQuery({
+    variables: {
+      companyId: developerCompanyId!,
+    },
+  });
+
   const propertiesByCompany =
     getPropertiesByCompany.data?.getPropertiesByCompany;
+  const projectsByCompany =
+    getProjectsByCompany?.data?.getProjectsByCompany?.projectsByCompany;
   const numberOfSingleProperties = propertiesByCompany?.length;
-
-  const projects = 0;
+  const numberOfProjects = projectsByCompany?.length ?? 0;
 
   const stats = [
     {
@@ -52,7 +60,7 @@ const Dashboard = () => {
     },
     {
       name: "Projects",
-      value: "0",
+      value: numberOfProjects,
       change: "-1.39%",
       changeType: "positive",
     },
@@ -67,7 +75,8 @@ const Dashboard = () => {
   const queriesLoading =
     loading ||
     getDeveloperCompanyByUser.loading ||
-    getPropertiesByCompany.loading;
+    getPropertiesByCompany.loading ||
+    getProjectsByCompany.loading;
 
   return (
     <>
@@ -182,16 +191,21 @@ const Dashboard = () => {
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-primary-blue lg:grid-cols-3 overflow-auto gap-x-5 gap-y-1 justify-between w-full mt-4">
                   {propertiesByCompany?.map((property) => (
-                    <div key={property?.id} className="w-full">
-                      <HomeCard
-                        beds={property?.propertyDetail?.bedrooms!}
-                        sqft={property?.propertyDetail?.sizeSqft!}
-                        price={property?.price!}
-                        baths={property?.propertyDetail?.bathrooms!}
-                        propertyMedia={property?.propertiesMedia}
-                        address={property?.propertyDetail?.address!}
-                      />
-                    </div>
+                    <Link
+                      href={`/dashboard/singleproperties/viewproperty?propertyId=${property?.id}`}
+                      key={property?.id}
+                    >
+                      <div key={property?.id} className="w-full">
+                        <HomeCard
+                          beds={property?.propertyDetail?.bedrooms!}
+                          sqft={property?.propertyDetail?.sizeSqft!}
+                          price={property?.price!}
+                          baths={property?.propertyDetail?.bathrooms!}
+                          propertyMedia={property?.propertiesMedia}
+                          address={property?.propertyDetail?.address!}
+                        />
+                      </div>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -200,7 +214,7 @@ const Dashboard = () => {
               <p className=" text-[22px] pl-1 font-medium leading-7 text-primary-blue">
                 Recent Projects
               </p>
-              {projects == 0 ? (
+              {numberOfProjects == 0 ? (
                 <div className="flex py-20 items-center justify-center text-primary-blue rounded-lg bg-white mt-4 border border-gray-900/10">
                   <div className="flex flex-col items-center gap-y-3 text-center">
                     <span className=" bg-gray-50 p-6 rounded-full">
@@ -212,18 +226,21 @@ const Dashboard = () => {
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-primary-blue lg:grid-cols-3 overflow-auto gap-x-5 gap-y-1 justify-between w-full mt-4">
-                  {propertiesByCompany?.map((property) => (
-                    <div key={property?.id} className="w-full">
-                      <HomeCard
-                        beds={property?.propertyDetail?.bedrooms!}
-                        sqft={property?.propertyDetail?.sizeSqft!}
-                        price={property?.price!}
-                        baths={property?.propertyDetail?.bathrooms!}
-                        propertyMedia={property?.propertiesMedia}
-                        address={property?.propertyDetail?.address!}
-                      />
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 text-primary-blue lg:grid-cols-2 overflow-auto gap-x-10 gap-y-8 justify-between w-full mt-4">
+                  {projectsByCompany?.map((project) => (
+                    <Link
+                      key={project?.id}
+                      href={`/dashboard/projects/viewproject?projectId=${project?.id}`}
+                    >
+                      <div key={project?.id} className="w-full">
+                        <ProjectCard
+                          name={project?.projectName!}
+                          description={project?.description!}
+                          projectMedia={project?.projectsMedia}
+                          address={project?.address!}
+                        />
+                      </div>
+                    </Link>
                   ))}
                 </div>
               )}

@@ -4,5 +4,12 @@ query GetPrototypeByProject($projectId: String!) {
     prototypeName
     description
     createdAt
+    prototypesMedia {
+      mediaUrl
+      propertyMediaCategory {
+        mediaCategory
+      }
+      propertyMediaCategoryId
+    }
   }
 }

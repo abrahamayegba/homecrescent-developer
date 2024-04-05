@@ -1,0 +1,52 @@
+query GetProjectById($projectId: String!) {
+  getProjectById(projectId: $projectId) {
+    id
+    projectName
+    description
+    cityId
+    city {
+      cityName
+      state {
+        stateName
+      }
+    }
+    address
+    projectsMedia {
+      mediaUrl
+      projectMediaCategory {
+        mediaCategory
+      }
+      projectMediaCategoryId
+    }
+    prototypes {
+      prototypeName
+      description
+      prototypesMedia {
+        mediaUrl
+        propertyMediaCategory {
+          mediaCategory
+        }
+        propertyMediaCategoryId
+      }
+    }
+    properties {
+      description
+      name
+      price
+      id
+      propertyDetail {
+        address
+        bedrooms
+        bathrooms
+        sizeSqft
+      }
+      propertiesMedia {
+        propertyMediaCategory {
+          mediaCategory
+        }
+        mediaUrl
+        propertyMediaCategoryId
+      }
+    }
+  }
+}

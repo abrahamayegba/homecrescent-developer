@@ -1,0 +1,42 @@
+query GetPropertyById($propertyId: String!) {
+  getPropertyById(propertyId: $propertyId) {
+    id
+    name
+    description
+    price
+    cityId
+    city {
+      cityName
+      state {
+        stateName
+      }
+    }
+    propertyStatus {
+      propertyStatus
+    }
+    propertyDetail {
+      longitude
+      floors
+      isFurnished
+      isNewConstruction
+      hasPool
+      hasGarden
+      canMortgage
+      canPayInstallment
+      dateCompleted
+      parkingSpaces
+      bedrooms
+      bathrooms
+      sizeSqft
+      floors
+      address
+    }
+    propertiesMedia {
+      id
+      mediaUrl
+      propertyMediaCategory {
+        mediaCategory
+      }
+    }
+  }
+}

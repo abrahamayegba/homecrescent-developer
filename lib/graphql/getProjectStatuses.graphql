@@ -1,0 +1,6 @@
+query getProjectStatuses {
+  getProjectStatuses {
+    projectStatus
+    id
+  }
+}
